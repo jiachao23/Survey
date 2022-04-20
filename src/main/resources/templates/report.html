@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统计</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div style="height: 700px" class="echarts" id="dayStudentCharts"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div style="height: 700px" class="echarts" id="monthStudentCharts"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="echarts" id="dayClassCharts"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="echarts" id="monthClassCharts"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.5"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
+    <script type="text/javascript">
+        var dayStudentCharts = echarts.init(document.getElementById('dayStudentCharts'));
+        var dayClassCharts = echarts.init(document.getElementById('dayClassCharts'));
+        var monthStudentCharts = echarts.init(document.getElementById('monthStudentCharts'));
+        var monthClassCharts = echarts.init(document.getElementById('monthClassCharts'));
+
+        var data = []
+        $.ajax({
+            type : 'post',  //传输类型
+            async : false,  //同步执行
+            url : '/all', //web.xml中注册的Servlet的url-pattern
+            data : {},
+            dataType : 'json', //返回数据形式为json
+            success : function(result) {
+                if (result) {
+                    data = result;
+                }
+            },
+            error : function(errorMsg) {
+                alert("加载数据失败");
+            }
+        });
+
+        var dayStudentChartsOption = {
+            title: {
+                text: data[0].title
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: data[0].category.yAxis
+            },
+            series: [
+                {
+                    // name: '2011',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    type: 'bar',
+                    data: data[0].category.data
+                }
+            ]
+        };
+        dayStudentCharts.setOption(dayStudentChartsOption);
+        $(window).resize(dayStudentCharts.resize);
+
+        var dayClassChartsOption = {
+            title: {
+                text: data[1].title
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: data[1].category.yAxis
+            },
+            series: [
+                {
+                    // name: '2011',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    type: 'bar',
+                    data: data[1].category.data
+                }
+            ]
+        };
+        dayClassCharts.setOption(dayClassChartsOption);
+        $(window).resize(dayClassCharts.resize);
+
+        var monthStudentChartsOption = {
+            title: {
+                text: data[2].title
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: data[2].category.yAxis
+            },
+            series: [
+                {
+                    // name: '2011',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    type: 'bar',
+                    data: data[2].category.data
+                }
+            ]
+        };
+        monthStudentCharts.setOption(monthStudentChartsOption);
+        $(window).resize(monthStudentCharts.resize);
+
+        var monthClassChartsOption = {
+            title: {
+                text: data[3].title
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: data[3].category.yAxis
+            },
+            series: [
+                {
+                    // name: '2011',
+                    label: {
+                        show: true,
+                        position: 'inside'
+                    },
+                    type: 'bar',
+                    data: data[3].category.data
+                }
+            ]
+        };
+        monthClassCharts.setOption(monthClassChartsOption);
+        $(window).resize(monthClassCharts.resize);
+    </script>
+</body>
+
+</html>

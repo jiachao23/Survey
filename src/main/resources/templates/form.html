@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <h2><strong>西安高新第六小学 <span class="text-navy">“2022’海量阅读吉尼斯挑战赛”</span></strong></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <form class="form-horizontal m-t" id="surveyForm" action="/submit" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">班级：</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" name="className">
+                                        <option>三年级（1）班</option>
+                                        <option>三年级（2）班</option>
+                                        <option>三年级（3）班</option>
+                                        <option>三年级（4）班</option>
+                                        <option>三年级（5）班</option>
+                                        <option>三年级（6）班</option>
+                                        <option>三年级（7）班</option>
+                                        <option>三年级（8）班</option>
+                                        <option>三年级（9）班</option>
+                                        <option>四年级（1）班</option>
+                                        <option>四年级（2）班</option>
+                                        <option>四年级（3）班</option>
+                                        <option>四年级（4）班</option>
+                                        <option>四年级（5）班</option>
+                                        <option>四年级（6）班</option>
+                                        <option>四年级（7）班</option>
+                                        <option>四年级（8）班</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">学生姓名：</label>
+                                <div class="col-sm-8">
+                                    <input id="username" name="username" class="form-control required" type="text" aria-required="true" aria-invalid="true" placeholder="请输入学生姓名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label required">阅读量：</label>
+                                <div class="col-sm-8">
+                                    <input id="readCount" name="readCount" class="form-control required digits" type="text" placeholder="字数">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">日期：</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control required" placeholder="YYYY-MM-DD"
+                                           name="date" id="datepicker">
+                                    <label class="laydate-icon"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-3">
+                                    <button class="btn btn-primary center-block" type="submit">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="js/plugins/validate/messages_zh.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+    <script>
+    $().ready(function () {
+        $('#datepicker').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+            language: "zh-CN"
+        })
+        $("#surveyForm").validate({
+            submitHandler: function (form) {
+                form.submit()
+            }
+        })
+    })
+
+</script>
+</body>
+
+</html>
