@@ -3,6 +3,8 @@ package com.jcohy.survey;
 import com.jcohy.survey.service.Student;
 import com.jcohy.survey.service.StudentRepository;
 import com.jcohy.survey.utils.DateUtils;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
+@Disabled
 class SurveyApplicationTests {
 
     @Autowired
