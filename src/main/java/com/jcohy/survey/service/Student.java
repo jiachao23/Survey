@@ -103,6 +103,6 @@ public class Student implements Comparable<Student>{
 
     @Override
     public int compareTo(Student o) {
-        return o.getReadCount().compareTo(this.getReadCount());
+        return Long.compare(o.getReadCount(),this.getReadCount());
     }
 }

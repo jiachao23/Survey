@@ -77,7 +77,7 @@ public class StatisticsController {
 
         List<Map.Entry<String, LongSummaryStatistics>> list = new ArrayList<>(statisticsMap.entrySet());
 
-        list.sort((o1, o2) -> (int) (o2.getValue().getSum() - o1.getValue().getSum()));
+        list.sort((o1, o2) -> Long.compare(o2.getValue().getSum(),o1.getValue().getSum()));
 
 		list.stream().limit(20).forEach((l) -> {
             yAxis.add(l.getKey());
@@ -106,7 +106,7 @@ public class StatisticsController {
 
         List<Map.Entry<String, LongSummaryStatistics>> list = new ArrayList<>(collect.entrySet());
 
-        list.sort((o1, o2) -> (int) (o2.getValue().getSum() - o1.getValue().getSum()));
+        list.sort((o1, o2) -> Long.compare(o2.getValue().getSum(),o1.getValue().getSum()));
 
         list.stream().limit(3).forEach((l) -> {
             yAxis.add(l.getKey());
@@ -132,7 +132,7 @@ public class StatisticsController {
 
         List<Map.Entry<String, LongSummaryStatistics>> list = new ArrayList<>(collect.entrySet());
 
-        list.sort((o1, o2) -> (int) (o2.getValue().getSum() - o1.getValue().getSum()));
+        list.sort((o1, o2) -> Long.compare(o2.getValue().getSum(),o1.getValue().getSum()));
 
 		list.stream().limit(3).forEach((l) -> {
             yAxis.add(l.getKey());
