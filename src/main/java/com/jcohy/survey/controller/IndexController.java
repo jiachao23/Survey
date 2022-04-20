@@ -1,5 +1,8 @@
 package com.jcohy.survey.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jcohy.survey.service.Student;
 import com.jcohy.survey.service.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class IndexController {
 
+	private static Logger logger = LoggerFactory.getLogger(IndexController.class);
     @Autowired
     private StudentRepository repository;
 
@@ -35,6 +39,7 @@ public class IndexController {
 
     @PostMapping("/submit")
     public String submit(Student student) {
+		logger.info(student.toString());
         Student dbStudent = repository.findAllByUsernameAndDate(student.getUsername(), student.getDate());
         if (dbStudent != null) {
             dbStudent.setClassName(student.getClassName());

@@ -19,7 +19,29 @@ public class EchartsModel implements Serializable {
 
     private Category category;
 
-    @Override
+	private Long dayCount;
+
+	private Long monthCount;
+
+	public Long getDayCount() {
+		return dayCount;
+	}
+
+	public EchartsModel setDayCount(Long dayCount) {
+		this.dayCount = dayCount;
+		return this;
+	}
+
+	public Long getMonthCount() {
+		return monthCount;
+	}
+
+	public EchartsModel setMonthCount(Long monthCount) {
+		this.monthCount = monthCount;
+		return this;
+	}
+
+	@Override
     public String toString() {
         return "EchartsModel{" +
                 "title='" + title + '\'' +
@@ -51,7 +73,7 @@ public class EchartsModel implements Serializable {
 
         private List<String> yAxis;
 
-        private List<Integer> data;
+        private List<Long> data;
 
         public List<String> getxAxis() {
             return xAxis;
@@ -71,11 +93,11 @@ public class EchartsModel implements Serializable {
             return this;
         }
 
-        public List<Integer> getData() {
+        public List<Long> getData() {
             return data;
         }
 
-        public Category setData(List<Integer> data) {
+        public Category setData(List<Long> data) {
             this.data = data;
             return this;
         }

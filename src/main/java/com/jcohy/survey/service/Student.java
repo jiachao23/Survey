@@ -28,7 +28,7 @@ public class Student implements Comparable<Student>{
 
     private String date;
 
-    private Integer readCount;
+    private Long readCount;
 
     private String username;
 
@@ -68,11 +68,11 @@ public class Student implements Comparable<Student>{
         return this;
     }
 
-    public Integer getReadCount() {
+    public Long getReadCount() {
         return readCount;
     }
 
-    public Student setReadCount(Integer readCount) {
+    public Student setReadCount(Long readCount) {
         this.readCount = readCount;
         return this;
     }
@@ -103,6 +103,6 @@ public class Student implements Comparable<Student>{
 
     @Override
     public int compareTo(Student o) {
-        return this.getReadCount().compareTo(o.getReadCount());
+        return o.getReadCount().compareTo(this.getReadCount());
     }
 }

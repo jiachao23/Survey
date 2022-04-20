@@ -13,6 +13,16 @@
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content text-center p-md">
+                        <h2><strong>西安高新第六小学 <span class="text-navy">“2022’海量阅读吉尼斯挑战赛”</span></strong></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-6">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content">
@@ -48,6 +58,38 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right"></span>
+                        <h5><strong><span class="text-navy">“2022’海量阅读吉尼斯挑战赛</span>三、四年级总阅读量</strong></h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" id="total"></h1>
+<!--                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i>-->
+<!--                        </div>-->
+                        <small>总字数</small>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-sm-6">-->
+<!--                <div class="ibox float-e-margins">-->
+<!--                    <div class="ibox-title">-->
+<!--                        <span class="label label-info pull-right">全年</span>-->
+<!--                        <h5>订单</h5>-->
+<!--                    </div>-->
+<!--                    <div class="ibox-content">-->
+<!--                        <h1 class="no-margins">275,800</h1>-->
+<!--                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i>-->
+<!--                        </div>-->
+<!--                        <small>新订单</small>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+
     </div>
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.5"></script>
@@ -75,6 +117,8 @@
             }
         });
 
+        $("#total").html(data[4].monthCount);
+
         const dayStudentChartsOption = {
             title: {
                 text: data[0].title
@@ -98,6 +142,7 @@
             },
             yAxis: {
                 type: 'category',
+                inverse: true,
                 data: data[0].category.yAxis
             },
             series: [
@@ -138,6 +183,7 @@
             },
             yAxis: {
                 type: 'category',
+                inverse: true,
                 data: data[1].category.yAxis
             },
             series: [
@@ -178,6 +224,7 @@
             },
             yAxis: {
                 type: 'category',
+                inverse: true,
                 data: data[2].category.yAxis
             },
             series: [
@@ -218,6 +265,7 @@
             },
             yAxis: {
                 type: 'category',
+                inverse: true,
                 data: data[3].category.yAxis
             },
             series: [
