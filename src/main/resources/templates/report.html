@@ -53,12 +53,12 @@
     <script src="js/bootstrap.min.js?v=3.3.5"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
     <script type="text/javascript">
-        var dayStudentCharts = echarts.init(document.getElementById('dayStudentCharts'));
-        var dayClassCharts = echarts.init(document.getElementById('dayClassCharts'));
-        var monthStudentCharts = echarts.init(document.getElementById('monthStudentCharts'));
-        var monthClassCharts = echarts.init(document.getElementById('monthClassCharts'));
+        const dayStudentCharts = echarts.init(document.getElementById('dayStudentCharts'));
+        const dayClassCharts = echarts.init(document.getElementById('dayClassCharts'));
+        const monthStudentCharts = echarts.init(document.getElementById('monthStudentCharts'));
+        const monthClassCharts = echarts.init(document.getElementById('monthClassCharts'));
 
-        var data = []
+        let data = []
         $.ajax({
             type : 'post',  //传输类型
             async : false,  //同步执行
@@ -75,7 +75,7 @@
             }
         });
 
-        var dayStudentChartsOption = {
+        const dayStudentChartsOption = {
             title: {
                 text: data[0].title
             },
@@ -115,7 +115,7 @@
         dayStudentCharts.setOption(dayStudentChartsOption);
         $(window).resize(dayStudentCharts.resize);
 
-        var dayClassChartsOption = {
+        const dayClassChartsOption = {
             title: {
                 text: data[1].title
             },
@@ -155,7 +155,7 @@
         dayClassCharts.setOption(dayClassChartsOption);
         $(window).resize(dayClassCharts.resize);
 
-        var monthStudentChartsOption = {
+        const monthStudentChartsOption = {
             title: {
                 text: data[2].title
             },
@@ -195,7 +195,7 @@
         monthStudentCharts.setOption(monthStudentChartsOption);
         $(window).resize(monthStudentCharts.resize);
 
-        var monthClassChartsOption = {
+        const monthClassChartsOption = {
             title: {
                 text: data[3].title
             },

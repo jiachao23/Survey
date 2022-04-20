@@ -4,10 +4,17 @@ spring:
     mode: HTML
     cache: false
   profiles:
-    active: dev
+    active: prod
 server:
   port: 10993
 
+
+#  ssl:
+#    key-password: dAHXD4eC
+#    protocol: TLS
+#    key-store: classpath:6065309_www.jcohy.com.pfx
+#    key-alias: tomcat
+#    key-store-type: PKCS12
 ---
 
 spring:
