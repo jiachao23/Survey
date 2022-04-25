@@ -22,7 +22,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="middle-box text-center animated fadeInRightBig">
-                    <h3 class="font-bold">操作成功</h3>
+                    <h3 class="font-bold">操作失败</h3>
+
+                    <div class="error-desc">
+                        <P th:text = "${message}"></P>
+
+                        <br/><a href="http://localhost:10993/index" class="btn btn-primary m-t">重新填写</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,6 +37,13 @@
     <!-- 全局js -->
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.7"></script>
+
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <!--统计代码，可删除-->
+
 </body>
 
 </html>

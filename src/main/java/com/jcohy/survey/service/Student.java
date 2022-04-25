@@ -4,7 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+
 import java.util.Objects;
+
+import com.jcohy.survey.validation.DateConstraint;
 
 /**
  * 描述: .
@@ -23,13 +28,17 @@ public class Student implements Comparable<Student>{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+   @NotNull(message = "班级不能为空！")
     private String className;
 
-
+   @DateConstraint(message = "日期格式必须为 yyyy-mm-dd")
     private String date;
 
-    private Long readCount;
+  	@NotNull(message = "阅读量不能为空")
+   @Digits(integer = 10,fraction = 0)
+   private Long readCount = 0L;
 
+   @NotNull(message = "姓名不能为空")
     private String username;
 
     public String getUsername() {

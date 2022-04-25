@@ -91,11 +91,19 @@
 
     <script>
     $().ready(function () {
+        const nowDate = new Date();
+        let month = nowDate.getMonth() + 1;
+        let day = nowDate.getDate();
+        month = (month.toString().length == 1) ? ("0" + month) : month;
+        day = (day.toString().length == 1) ? ("0" + day) : day;
+        //当前日期 yyyy-MM-dd
+        $('#datepicker').val(nowDate.getFullYear() + '-' + month + '-' + day)
         $('#datepicker').datepicker({
             autoclose: true,
             format: 'yyyy-mm-dd',
             language: "zh-CN",
-            endDate: new Date(),
+            startDate: '2022-04-21',
+            endDate: '2022-05-23',
             todayHighlight : true,
             defaultDate : new Date(),
             todayBtn: 'linked'

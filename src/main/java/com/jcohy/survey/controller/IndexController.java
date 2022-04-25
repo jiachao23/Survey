@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 
 import com.jcohy.survey.service.Student;
 import com.jcohy.survey.service.StudentRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -38,7 +40,7 @@ public class IndexController {
     }
 
     @PostMapping("/submit")
-    public String submit(Student student) {
+    public String submit(@Validated Student student) {
 		logger.info(student.toString());
         Student dbStudent = repository.findAllByUsernameAndDate(student.getUsername(), student.getDate());
         if (dbStudent != null) {
@@ -54,7 +56,12 @@ public class IndexController {
     }
 
     @GetMapping("/success")
-    public String success(Student student) {
+    public String success() {
         return "success";
     }
+
+	@GetMapping("/error")
+	public String fail() {
+		return "error";
+	}
 }

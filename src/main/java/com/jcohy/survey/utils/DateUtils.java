@@ -26,4 +26,12 @@ public class DateUtils {
         LocalDate minusDays = LocalDate.now().minusDays(30);
         return localDate.isAfter(minusDays);
     }
+
+	public static LocalDate parse(String date) {
+		try {
+			return LocalDate.parse(date, formatter);
+		} catch (Exception exception) {
+			return null;
+		}
+	}
 }
