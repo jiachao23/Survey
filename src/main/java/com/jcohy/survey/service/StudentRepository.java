@@ -1,8 +1,8 @@
 package com.jcohy.survey.service;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * 描述: .
@@ -14,9 +14,9 @@ import java.util.List;
  * @version 2022.0.1 2022/4/19:17:04
  * @since 2022.0.1
  */
-public interface StudentRepository extends JpaRepository<Student,Long> {
+public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    List<Student> findAllByDate(String Date);
+	List<Student> findAllByDate(String Date);
 
-    Student findAllByUsernameAndDate(String username,String date);
+	Student findAllByUsernameAndDate(String username, String date);
 }

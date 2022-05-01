@@ -1,11 +1,12 @@
 package com.jcohy.survey;
 
-import com.jcohy.survey.utils.DateUtils;
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
+import com.jcohy.survey.utils.DateUtils;
 
 /**
  * 描述: .
@@ -19,18 +20,18 @@ import java.time.LocalDate;
  */
 public class TestDate {
 
-    @Test
-    void date(){
-        String s = LocalDate.now().toString();
-        System.out.println(s);
-    }
+	@Test
+	void date() {
+		String s = LocalDate.now().toString();
+		System.out.println(s);
+	}
 
-    @Test
-    @Disabled
-    void date2() {
-        Assertions.assertTrue(DateUtils.isAfter("2022-04-19"));
-        Assertions.assertTrue(DateUtils.isAfter("2022-04-18"));
-        Assertions.assertTrue(DateUtils.isAfter("2022-03-21"));
-        Assertions.assertFalse(DateUtils.isAfter("2022-03-20"));
-    }
+	@Test
+	@Disabled
+	void date2() {
+		Assertions.assertTrue(DateUtils.isAfter("2022-04-19"));
+		Assertions.assertTrue(DateUtils.isAfter("2022-04-18"));
+		Assertions.assertTrue(DateUtils.isAfter("2022-03-21"));
+		Assertions.assertFalse(DateUtils.isAfter("2022-03-20"));
+	}
 }

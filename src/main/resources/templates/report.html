@@ -2,287 +2,294 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>统计</title>
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="favicon.ico" rel="shortcut icon">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
+    <base target="_blank">
 </head>
 
 <body class="gray-bg">
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content text-center p-md">
-                        <h2><strong>西安高新第六小学 <span class="text-navy">“2022”海量阅读吉尼斯挑战赛”</span></strong></h2>
-                    </div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <h2><strong>西安高新第六小学 <span class="text-navy">“2022”海量阅读吉尼斯挑战赛”</span></strong>
+                    </h2>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div style="height: 700px" class="echarts" id="dayStudentCharts"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div style="height: 700px" class="echarts" id="monthStudentCharts"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm-6">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div class="echarts" id="dayClassCharts"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div class="echarts" id="monthClassCharts"></div>
-                    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="echarts" id="dayStudentCharts"
+                         style="height: 700px"></div>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-success pull-right"></span>
-                        <h5><strong>“2022”海量阅读吉尼斯挑战赛<span class="text-navy">三、四年级总阅读量</span></strong></h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" id="total"></h1>
-<!--                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i>-->
-<!--                        </div>-->
-                        <small>总字数</small>
-                    </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="echarts" id="monthStudentCharts"
+                         style="height: 700px"></div>
                 </div>
             </div>
-<!--            <div class="col-sm-6">-->
-<!--                <div class="ibox float-e-margins">-->
-<!--                    <div class="ibox-title">-->
-<!--                        <span class="label label-info pull-right">全年</span>-->
-<!--                        <h5>订单</h5>-->
-<!--                    </div>-->
-<!--                    <div class="ibox-content">-->
-<!--                        <h1 class="no-margins">275,800</h1>-->
-<!--                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i>-->
-<!--                        </div>-->
-<!--                        <small>新订单</small>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
         </div>
 
     </div>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.5"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
-    <script type="text/javascript">
-        const dayStudentCharts = echarts.init(document.getElementById('dayStudentCharts'));
-        const dayClassCharts = echarts.init(document.getElementById('dayClassCharts'));
-        const monthStudentCharts = echarts.init(document.getElementById('monthStudentCharts'));
-        const monthClassCharts = echarts.init(document.getElementById('monthClassCharts'));
 
-        let data = []
-        $.ajax({
-            type : 'post',  //传输类型
-            async : false,  //同步执行
-            url : '/all', //web.xml中注册的Servlet的url-pattern
-            data : {},
-            dataType : 'json', //返回数据形式为json
-            success : function(result) {
-                if (result) {
-                    data = result;
-                }
-            },
-            error : function(errorMsg) {
-                alert("加载数据失败");
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="echarts" id="dayClassCharts"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="echarts" id="monthClassCharts"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right"></span>
+                    <h5><strong>“2022”海量阅读吉尼斯挑战赛<span
+                            class="text-navy">三、四年级总阅读量</span></strong></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" id="total"></h1>
+                    <!--                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i>-->
+                    <!--                        </div>-->
+                    <small>总字数</small>
+                </div>
+            </div>
+        </div>
+        <!--            <div class="col-sm-6">-->
+        <!--                <div class="ibox float-e-margins">-->
+        <!--                    <div class="ibox-title">-->
+        <!--                        <span class="label label-info pull-right">全年</span>-->
+        <!--                        <h5>订单</h5>-->
+        <!--                    </div>-->
+        <!--                    <div class="ibox-content">-->
+        <!--                        <h1 class="no-margins">275,800</h1>-->
+        <!--                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i>-->
+        <!--                        </div>-->
+        <!--                        <small>新订单</small>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+    </div>
+
+</div>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"
+        type="text/javascript"></script>
+<script type="text/javascript">
+    const dayStudentCharts = echarts.init(document.getElementById('dayStudentCharts'));
+    const dayClassCharts = echarts.init(document.getElementById('dayClassCharts'));
+    const monthStudentCharts = echarts.init(document.getElementById('monthStudentCharts'));
+    const monthClassCharts = echarts.init(document.getElementById('monthClassCharts'));
+
+    let data = []
+    $.ajax({
+        type: 'post',  //传输类型
+        async: false,  //同步执行
+        url: '/all', //web.xml中注册的Servlet的url-pattern
+        data: {},
+        dataType: 'json', //返回数据形式为json
+        success: function (result) {
+            if (result) {
+                data = result;
             }
-        });
+        },
+        error: function (errorMsg) {
+            alert("加载数据失败");
+        }
+    });
 
-        $("#total").html(data[4].monthCount);
+    $("#total").html(data[4].monthCount);
 
-        const dayStudentChartsOption = {
-            title: {
-                text: data[0].title
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
-                }
-            },
-            legend: {},
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'value',
-                boundaryGap: [0, 0.01]
-            },
-            yAxis: {
-                type: 'category',
-                inverse: true,
-                data: data[0].category.yAxis
-            },
-            series: [
-                {
-                    // name: '2011',
-                    label: {
-                        show: true,
-                        position: 'inside'
-                    },
-                    type: 'bar',
-                    data: data[0].category.data
-                }
-            ]
-        };
-        dayStudentCharts.setOption(dayStudentChartsOption);
-        $(window).resize(dayStudentCharts.resize);
+    const dayStudentChartsOption = {
+        title: {
+            text: data[0].title
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {},
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            data: data[0].category.yAxis
+        },
+        series: [
+            {
+                // name: '2011',
+                label: {
+                    show: true,
+                    position: 'inside'
+                },
+                type: 'bar',
+                data: data[0].category.data
+            }
+        ]
+    };
+    dayStudentCharts.setOption(dayStudentChartsOption);
+    $(window).resize(dayStudentCharts.resize);
 
-        const dayClassChartsOption = {
-            title: {
-                text: data[1].title
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
-                }
-            },
-            legend: {},
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'value',
-                boundaryGap: [0, 0.01]
-            },
-            yAxis: {
-                type: 'category',
-                inverse: true,
-                data: data[1].category.yAxis
-            },
-            series: [
-                {
-                    // name: '2011',
-                    label: {
-                        show: true,
-                        position: 'inside'
-                    },
-                    type: 'bar',
-                    data: data[1].category.data
-                }
-            ]
-        };
-        dayClassCharts.setOption(dayClassChartsOption);
-        $(window).resize(dayClassCharts.resize);
+    const dayClassChartsOption = {
+        title: {
+            text: data[1].title
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {},
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            data: data[1].category.yAxis
+        },
+        series: [
+            {
+                // name: '2011',
+                label: {
+                    show: true,
+                    position: 'inside'
+                },
+                type: 'bar',
+                data: data[1].category.data
+            }
+        ]
+    };
+    dayClassCharts.setOption(dayClassChartsOption);
+    $(window).resize(dayClassCharts.resize);
 
-        const monthStudentChartsOption = {
-            title: {
-                text: data[2].title
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
-                }
-            },
-            legend: {},
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'value',
-                boundaryGap: [0, 0.01]
-            },
-            yAxis: {
-                type: 'category',
-                inverse: true,
-                data: data[2].category.yAxis
-            },
-            series: [
-                {
-                    // name: '2011',
-                    label: {
-                        show: true,
-                        position: 'inside'
-                    },
-                    type: 'bar',
-                    data: data[2].category.data
-                }
-            ]
-        };
-        monthStudentCharts.setOption(monthStudentChartsOption);
-        $(window).resize(monthStudentCharts.resize);
+    const monthStudentChartsOption = {
+        title: {
+            text: data[2].title
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {},
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            data: data[2].category.yAxis
+        },
+        series: [
+            {
+                // name: '2011',
+                label: {
+                    show: true,
+                    position: 'inside'
+                },
+                type: 'bar',
+                data: data[2].category.data
+            }
+        ]
+    };
+    monthStudentCharts.setOption(monthStudentChartsOption);
+    $(window).resize(monthStudentCharts.resize);
 
-        const monthClassChartsOption = {
-            title: {
-                text: data[3].title
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
-                }
-            },
-            legend: {},
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'value',
-                boundaryGap: [0, 0.01]
-            },
-            yAxis: {
-                type: 'category',
-                inverse: true,
-                data: data[3].category.yAxis
-            },
-            series: [
-                {
-                    // name: '2011',
-                    label: {
-                        show: true,
-                        position: 'inside'
-                    },
-                    type: 'bar',
-                    data: data[3].category.data
-                }
-            ]
-        };
-        monthClassCharts.setOption(monthClassChartsOption);
-        $(window).resize(monthClassCharts.resize);
-    </script>
+    const monthClassChartsOption = {
+        title: {
+            text: data[3].title
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {},
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            data: data[3].category.yAxis
+        },
+        series: [
+            {
+                // name: '2011',
+                label: {
+                    show: true,
+                    position: 'inside'
+                },
+                type: 'bar',
+                data: data[3].category.data
+            }
+        ]
+    };
+    monthClassCharts.setOption(monthClassChartsOption);
+    $(window).resize(monthClassCharts.resize);
+</script>
 </body>
 
 </html>

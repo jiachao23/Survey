@@ -16,7 +16,7 @@ import javax.validation.Constraint;
  * @version 2022.04.0 2022/4/25:11:23
  * @since 2022.04.0
  */
-@Target({ElementType.METHOD,ElementType.FIELD})
+@Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = DateConstraintValidator.class)
 public @interface DateConstraint {

@@ -6,6 +6,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.jcohy.survey.SurveyException;
+
 /**
  * 描述: .
  * <p>
@@ -18,19 +20,26 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionController {
 
-	@ExceptionHandler({BindException.class})
-	public String handleException(Exception ex,Model model) {
+	@ExceptionHandler({ BindException.class })
+	public String handleException(Exception ex, Model model) {
 		StringBuilder sb = new StringBuilder();
-		if(ex instanceof BindException) {
-			BindException bindException= (BindException) ex;
+		if (ex instanceof BindException) {
+			BindException bindException = (BindException) ex;
 			BindingResult bindingResult = bindException.getBindingResult();
-			bindingResult.getFieldErrors().forEach( fieldError -> {
+			bindingResult.getFieldErrors().forEach(fieldError -> {
 				sb.append(fieldError.getDefaultMessage());
 			});
 		}
 
 		System.out.println(sb);
-		model.addAttribute("message",sb.toString());
+		model.addAttribute("message", sb.toString());
+		return "redirect:/error";
+	}
+
+	@ExceptionHandler({ SurveyException.class })
+	public String handleException(SurveyException ex, Model model) {
+		String message = ex.getMessage();
+		model.addAttribute("message", message);
 		return "redirect:/error";
 	}
 }

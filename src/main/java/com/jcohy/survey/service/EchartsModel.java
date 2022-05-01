@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class EchartsModel implements Serializable {
 
-    private String title;
+	private String title;
 
-    private Category category;
+	private Category category;
 
 	private Long dayCount;
 
@@ -42,73 +42,73 @@ public class EchartsModel implements Serializable {
 	}
 
 	@Override
-    public String toString() {
-        return "EchartsModel{" +
-                "title='" + title + '\'' +
-                ", category=" + category +
-                '}';
-    }
+	public String toString() {
+		return "EchartsModel{" +
+				"title='" + title + '\'' +
+				", category=" + category +
+				'}';
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public EchartsModel setTitle(String title) {
-        this.title = title;
-        return this;
-    }
+	public EchartsModel setTitle(String title) {
+		this.title = title;
+		return this;
+	}
 
-    public Category getCategory() {
-        return category;
-    }
+	public Category getCategory() {
+		return category;
+	}
 
-    public EchartsModel setCategory(Category category) {
-        this.category = category;
-        return this;
-    }
+	public EchartsModel setCategory(Category category) {
+		this.category = category;
+		return this;
+	}
 
-    public static class Category {
+	public static class Category {
 
-        private List<String> xAxis;
+		private List<String> xAxis;
 
-        private List<String> yAxis;
+		private List<String> yAxis;
 
-        private List<Long> data;
+		private List<Long> data;
 
-        public List<String> getxAxis() {
-            return xAxis;
-        }
+		public List<String> getxAxis() {
+			return xAxis;
+		}
 
-        public Category setxAxis(List<String> xAxis) {
-            this.xAxis = xAxis;
-            return this;
-        }
+		public Category setxAxis(List<String> xAxis) {
+			this.xAxis = xAxis;
+			return this;
+		}
 
-        public List<String> getyAxis() {
-            return yAxis;
-        }
+		public List<String> getyAxis() {
+			return yAxis;
+		}
 
-        public Category setyAxis(List<String> yAxis) {
-            this.yAxis = yAxis;
-            return this;
-        }
+		public Category setyAxis(List<String> yAxis) {
+			this.yAxis = yAxis;
+			return this;
+		}
 
-        public List<Long> getData() {
-            return data;
-        }
+		public List<Long> getData() {
+			return data;
+		}
 
-        public Category setData(List<Long> data) {
-            this.data = data;
-            return this;
-        }
+		public Category setData(List<Long> data) {
+			this.data = data;
+			return this;
+		}
 
-        @Override
-        public String toString() {
-            return "Category{" +
-                    "xAxis=" + xAxis +
-                    ", yAxis=" + yAxis +
-                    ", data=" + data +
-                    '}';
-        }
-    }
+		@Override
+		public String toString() {
+			return "Category{" +
+					"xAxis=" + xAxis +
+					", yAxis=" + yAxis +
+					", data=" + data +
+					'}';
+		}
+	}
 }

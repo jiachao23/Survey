@@ -12,25 +12,25 @@ package com.jcohy.survey.service;
  */
 public class ClassModel {
 
-    private String className;
+	private String className;
 
-    private Integer readCount;
+	private Integer readCount;
 
-    public String getClassName() {
-        return className;
-    }
+	public String getClassName() {
+		return className;
+	}
 
-    public ClassModel setClassName(String className) {
-        this.className = className;
-        return this;
-    }
+	public ClassModel setClassName(String className) {
+		this.className = className;
+		return this;
+	}
 
-    public Integer getReadCount() {
-        return readCount;
-    }
+	public Integer getReadCount() {
+		return readCount;
+	}
 
-    public ClassModel setReadCount(Integer readCount) {
-        this.readCount = readCount;
-        return this;
-    }
+	public ClassModel setReadCount(Integer readCount) {
+		this.readCount = readCount;
+		return this;
+	}
 }

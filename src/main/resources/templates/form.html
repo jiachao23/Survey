@@ -2,94 +2,113 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>表单</title>
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="favicon.ico" rel="shortcut icon">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+          rel="stylesheet">
 </head>
 
 <body class="gray-bg">
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content text-center p-md">
-                        <h2><strong>西安高新第六小学 <span class="text-navy">“2022’海量阅读吉尼斯挑战赛”</span></strong></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <form class="form-horizontal m-t" id="surveyForm" action="/submit" method="post">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">班级：</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control" name="className">
-                                        <option>三年级（1）班</option>
-                                        <option>三年级（2）班</option>
-                                        <option>三年级（3）班</option>
-                                        <option>三年级（4）班</option>
-                                        <option>三年级（5）班</option>
-                                        <option>三年级（6）班</option>
-                                        <option>三年级（7）班</option>
-                                        <option>三年级（8）班</option>
-                                        <option>三年级（9）班</option>
-                                        <option>四年级（1）班</option>
-                                        <option>四年级（2）班</option>
-                                        <option>四年级（3）班</option>
-                                        <option>四年级（4）班</option>
-                                        <option>四年级（5）班</option>
-                                        <option>四年级（6）班</option>
-                                        <option>四年级（7）班</option>
-                                        <option>四年级（8）班</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">学生姓名：</label>
-                                <div class="col-sm-8">
-                                    <input id="username" name="username" class="form-control required" type="text" aria-required="true" aria-invalid="true" placeholder="请输入学生姓名">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label required">阅读字数：</label>
-                                <div class="col-sm-8">
-                                    <input id="readCount" name="readCount" class="form-control required digits" type="text" placeholder="字数（只能填写整数）">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">日期：</label>
-                                <div class="col-sm-8">
-                                    <input class="form-control required" placeholder="YYYY-MM-DD"
-                                           name="date" id="datepicker">
-                                    <label class="laydate-icon"></label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-8 col-sm-offset-3">
-                                    <button class="btn btn-primary center-block" type="submit">提交</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <h2><strong>西安高新第六小学 <span class="text-navy">“2022’海量阅读吉尼斯挑战赛”</span></strong>
+                    </h2>
                 </div>
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.5"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_zh.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form action="/submit" class="form-horizontal m-t" id="surveyForm"
+                          method="post">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">班级：</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="className">
+                                    <option>三年级（1）班</option>
+                                    <option>三年级（2）班</option>
+                                    <option>三年级（3）班</option>
+                                    <option>三年级（4）班</option>
+                                    <option>三年级（5）班</option>
+                                    <option>三年级（6）班</option>
+                                    <option>三年级（7）班</option>
+                                    <option>三年级（8）班</option>
+                                    <option>三年级（9）班</option>
+                                    <option>四年级（1）班</option>
+                                    <option>四年级（2）班</option>
+                                    <option>四年级（3）班</option>
+                                    <option>四年级（4）班</option>
+                                    <option>四年级（5）班</option>
+                                    <option>四年级（6）班</option>
+                                    <option>四年级（7）班</option>
+                                    <option>四年级（8）班</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">学生姓名：</label>
+                            <div class="col-sm-8">
+                                <input aria-invalid="true" aria-required="true"
+                                       class="form-control required" id="username"
+                                       name="username" placeholder="请输入学生姓名"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label required">阅读字数：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control required digits" id="readCount"
+                                       name="readCount" placeholder="字数（只能填写整数）"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">日期：</label>
+                            <div class="col-sm-8">
+                                <input class="form-control required"
+                                       id="datepicker"
+                                       name="date" placeholder="YYYY-MM-DD">
+                                <label class="laydate-icon"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">附加说明：</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="comment" name="comment"
+                                          placeholder="请填写当日准确阅读数字（误差许可为1000字以内）；阅读数字超过200000，请在附加说明里提供阅读的具体书名及阅读页码。"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button class="btn btn-primary center-block"
+                                        type="submit">提交
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_zh.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 
-    <script>
+<script>
     $().ready(function () {
         const nowDate = new Date();
         let month = nowDate.getMonth() + 1;
@@ -104,15 +123,62 @@
             language: "zh-CN",
             startDate: '2022-04-21',
             endDate: '2022-05-23',
-            todayHighlight : true,
-            defaultDate : new Date(),
+            todayHighlight: true,
+            defaultDate: new Date(),
             todayBtn: 'linked'
         })
+
+        // $.validator.addMethod("isComment", function(value,element,readCount){
+        //     if(readCount > 300000 ) {
+        //        return
+        //     } else {
+        //         $('#comment').rules('remove','required')
+        //     }
+        // }, "请添加附加说明，比如，书名，章节，页码");
+
         $("#surveyForm").validate({
-            submitHandler: function (form) {
-                form.submit()
-            }
+            // rules: {
+            //     comment: {
+            //         isComment: $('#readCount').val()
+            //         required:true
+            // remote: {
+            //     url: "/validate",
+            //     type: "get",
+            //     data: {
+            //         readCount: function() {
+            //             return $('#readCount').val();
+            //         },
+            //         comment: function () {
+            //             return $('#comment').val();
+            //         }
+            //     },
+            //     dataFilter: function(data, dataType) {
+            //         var resp = JSON.parse(data);
+            //         if (resp.result === "true") {
+            //             // 如果验证通过，返回true
+            //             return true;
+            //         } else {
+            //             // 如果验证失败，返回自定义的错误消息
+            //             return '请添加附加说明，比如，书名，章节，页码';
+            //         }
+            //     }
+            // }
+            //     }
+            // },
+            // messages: {
+            // }
         })
+        $("#readCount").change(function () {
+            const readCount = $("#readCount").val();
+            if (readCount > 200000) {
+                $("#comment").rules("add", {
+                    required: true,
+                    messages: {required: "请填写当日准确阅读数字（误差许可为1000字以内）；阅读数字超过200000，请在附加说明里提供阅读的具体书名及阅读页码。"}
+                });
+            } else {
+                $("#comment").rules("remove");
+            }
+        });
     })
 
 </script>
