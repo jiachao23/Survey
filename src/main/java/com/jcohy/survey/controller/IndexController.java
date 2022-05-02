@@ -50,7 +50,7 @@ public class IndexController {
 				throw new SurveyException("阅读数字超过 200000，请在下方提供阅读的具体书名及阅读页码。");
 			}
 		}
-		Student dbStudent = repository.findAllByUsernameAndDate(student.getUsername(), student.getDate());
+		Student dbStudent = repository.findAllByUsernameAndDateAndClassName(student.getUsername(), student.getDate(),student.getClassName());
 		if (dbStudent != null) {
 			dbStudent.setClassName(student.getClassName());
 			dbStudent.setDate(student.getDate());

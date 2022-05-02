@@ -92,7 +92,7 @@ public class StatisticsController {
 				.sorted()
 				.limit(20)
 				.forEach((l) -> {
-					yAxis.add(l.getUsername());
+					yAxis.add(l.getClassName() + "：" + l.getUsername());
 					data.add(l.getReadCount());
 				});
 //
@@ -189,7 +189,7 @@ public class StatisticsController {
 
 	private List<String> getUserName(List<Student> students) {
 		return students.stream()
-				.map(Student::getUsername)
+				.map((student) -> student.getClassName() + "：" + student.getUsername())
 				.collect(Collectors.toList());
 	}
 

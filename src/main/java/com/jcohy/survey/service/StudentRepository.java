@@ -18,5 +18,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
 	List<Student> findAllByDate(String Date);
 
-	Student findAllByUsernameAndDate(String username, String date);
+	Student findAllByUsernameAndDateAndClassName(String username, String date,String className);
 }
