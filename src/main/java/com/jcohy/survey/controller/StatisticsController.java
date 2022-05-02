@@ -71,19 +71,44 @@ public class StatisticsController {
 		List<String> yAxis = new ArrayList<>();
 		List<Long> data = new ArrayList<>();
 
-		Map<String, LongSummaryStatistics> statisticsMap = allStudents.stream()
+		List<Student> students = new ArrayList<>(allStudents.size());
+		allStudents.stream()
 				.filter((student) -> DateUtils.isAfter(student.getDate()))
-				.collect(Collectors.groupingBy(Student::getUsername, Collectors.summarizingLong(Student::getReadCount)));
+				.collect(Collectors.groupingBy(Student::getClassName))
+				.forEach((className,value) -> {
+					value.stream()
+							.collect(Collectors.groupingBy(Student::getUsername, Collectors.summarizingLong(Student::getReadCount)))
+							.forEach((username,readCount) -> {
+								Student student = new Student();
+								student.setUsername(username);
+								student.setClassName(className);
+								student.setReadCount(readCount.getSum());
+								students.add(student);
+							});
+				});
 
 
-		List<Map.Entry<String, LongSummaryStatistics>> list = new ArrayList<>(statisticsMap.entrySet());
+		students.stream()
+				.sorted()
+				.limit(20)
+				.forEach((l) -> {
+					yAxis.add(l.getUsername());
+					data.add(l.getReadCount());
+				});
+//
+//		Map<String, LongSummaryStatistics> statisticsMap = allStudents.stream()
+//				.filter((student) -> DateUtils.isAfter(student.getDate()))
+//				.collect(Collectors.groupingBy(Student::getUsername, Collectors.summarizingLong(Student::getReadCount)));
+//
+//
+//		List<Map.Entry<String, LongSummaryStatistics>> list = new ArrayList<>(statisticsMap.entrySet());
+//
+//		list.sort((o1, o2) -> Long.compare(o2.getValue().getSum(), o1.getValue().getSum()));
 
-		list.sort((o1, o2) -> Long.compare(o2.getValue().getSum(), o1.getValue().getSum()));
-
-		list.stream().limit(20).forEach((l) -> {
-			yAxis.add(l.getKey());
-			data.add(l.getValue().getSum());
-		});
+//		list.stream().limit(20).forEach((l) -> {
+//			yAxis.add(l.getKey());
+//			data.add(l.getValue().getSum());
+//		});
 
 		EchartsModel.Category category = new EchartsModel.Category();
 		category.setyAxis(yAxis);
