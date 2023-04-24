@@ -2,6 +2,7 @@ package com.jcohy.survey;
 
 import java.time.LocalDate;
 
+import com.jcohy.survey.controller.MessageHint;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -20,18 +21,27 @@ import com.jcohy.survey.utils.DateUtils;
  */
 public class TestDate {
 
-	@Test
-	void date() {
-		String s = LocalDate.now().toString();
-		System.out.println(s);
-	}
+    @Test
+    void date() {
+        String s = LocalDate.now().toString();
+        System.out.println(s);
+    }
 
-	@Test
-	@Disabled
-	void date2() {
-		Assertions.assertTrue(DateUtils.isAfter("2022-04-19"));
-		Assertions.assertTrue(DateUtils.isAfter("2022-04-18"));
-		Assertions.assertTrue(DateUtils.isAfter("2022-03-21"));
-		Assertions.assertFalse(DateUtils.isAfter("2022-03-20"));
-	}
+    @Test
+    @Disabled
+    void date2() {
+        Assertions.assertTrue(DateUtils.isAfter("2022-04-19"));
+        Assertions.assertTrue(DateUtils.isAfter("2022-04-18"));
+        Assertions.assertTrue(DateUtils.isAfter("2022-03-21"));
+        Assertions.assertFalse(DateUtils.isAfter("2022-03-20"));
+    }
+
+    @Test
+    void test() {
+        System.out.println(MessageHint.getMessage(10000));
+        System.out.println(MessageHint.getMessage(30000));
+        System.out.println(MessageHint.getMessage(50000));
+        System.out.println(MessageHint.getMessage(100000));
+        System.out.println(MessageHint.getMessage(200000));
+    }
 }

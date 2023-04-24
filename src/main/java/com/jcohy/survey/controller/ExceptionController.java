@@ -1,5 +1,7 @@
 package com.jcohy.survey.controller;
 
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,9 @@ import com.jcohy.survey.SurveyException;
 @ControllerAdvice
 public class ExceptionController {
 
+    @Value("${host}")
+    private String host;
+
 	@ExceptionHandler({ BindException.class })
 	public String handleException(Exception ex, Model model) {
 		StringBuilder sb = new StringBuilder();
@@ -33,13 +38,15 @@ public class ExceptionController {
 
 		System.out.println(sb);
 		model.addAttribute("message", sb.toString());
-		return "redirect:/error";
+        model.addAttribute("url", host);
+		return "error";
 	}
 
 	@ExceptionHandler({ SurveyException.class })
 	public String handleException(SurveyException ex, Model model) {
 		String message = ex.getMessage();
 		model.addAttribute("message", message);
-		return "redirect:/error";
+        model.addAttribute("url", host);
+		return "error";
 	}
 }

@@ -5,10 +5,13 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jcohy.survey.SurveyException;
 import com.jcohy.survey.service.Student;
@@ -32,6 +35,11 @@ public class IndexController {
 	@Autowired
 	private StudentRepository repository;
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/index";
+    }
+
 	@GetMapping("/index")
 	public String index() {
 		return "form";
@@ -43,7 +51,13 @@ public class IndexController {
 	}
 
 	@PostMapping("/submit")
-	public String submit(@Validated Student student) {
+	public String submit(@Validated Student student, Model attr) {
+
+        if (student.getReadCount() >= 300000) {
+            logger.info("添加失败！ {}", student);
+            throw new SurveyException("阅读数字超过 300000，不允许提交！");
+        }
+
 		if (student.getReadCount() > 200000) {
 			if (!StringUtils.hasLength(student.getComment())) {
 				logger.info("添加失败！ {}", student);
@@ -64,7 +78,9 @@ public class IndexController {
 			logger.info("insertStudent: {} ", student);
 			repository.save(student);
 		}
-		return "redirect:/success";
+        String message = MessageHint.getMessage(student.getReadCount().intValue());
+        attr.addAttribute("message",message);
+        return "success";
 	}
 
 	@GetMapping("/success")

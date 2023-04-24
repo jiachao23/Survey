@@ -5,10 +5,13 @@ plugins {
 }
 
 group = 'com.jcohy.survey'
-version = '0.0.5'
+version = '0.0.6'
 sourceCompatibility = '11'
 
 repositories {
+	maven {
+		url = 'https://maven.aliyun.com/repository/public'
+	}
 	mavenCentral()
 }
 
@@ -17,6 +20,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

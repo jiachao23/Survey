@@ -4,7 +4,7 @@ spring:
     mode: HTML
     cache: false
   profiles:
-    active: dev
+    active: prod
 server:
   port: 10993
 
@@ -26,7 +26,7 @@ spring:
   config:
     activate:
       on-profile: dev
-
+host: http://localhost:10993/index
 ---
 
 spring:
@@ -38,3 +38,4 @@ spring:
   config:
     activate:
       on-profile: prod
+host: http://114.116.39.31:10993/index

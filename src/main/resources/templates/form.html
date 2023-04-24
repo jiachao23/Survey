@@ -19,7 +19,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content text-center p-md">
-                    <h2><strong>西安高新第六小学 <span class="text-navy">“2022’海量阅读吉尼斯挑战赛”</span></strong>
+                    <h2><strong>西安高新第六小学 <span class="text-navy">“成美阅读”‘2023’迪尼斯挑战赛</span></strong>
                     </h2>
                 </div>
             </div>
@@ -41,9 +41,6 @@
                                     <option>三年级（4）班</option>
                                     <option>三年级（5）班</option>
                                     <option>三年级（6）班</option>
-                                    <option>三年级（7）班</option>
-                                    <option>三年级（8）班</option>
-                                    <option>三年级（9）班</option>
                                     <option>四年级（1）班</option>
                                     <option>四年级（2）班</option>
                                     <option>四年级（3）班</option>
@@ -52,6 +49,7 @@
                                     <option>四年级（6）班</option>
                                     <option>四年级（7）班</option>
                                     <option>四年级（8）班</option>
+                                    <option>四年级（9）班</option>
                                 </select>
                             </div>
                         </div>
@@ -121,8 +119,8 @@
             autoclose: true,
             format: 'yyyy-mm-dd',
             language: "zh-CN",
-            startDate: '2022-04-21',
-            endDate: '2022-05-23',
+            startDate: '2023-04-24',
+            endDate: '2023-05-31',
             todayHighlight: true,
             defaultDate: new Date(),
             todayBtn: 'linked'
@@ -170,6 +168,9 @@
         })
         $("#readCount").change(function () {
             const readCount = $("#readCount").val();
+            if (readCount >= 300000) {
+                alert("因为你的阅读速度太惊人，超出了我的统计范围，需要联系两位老师帮助你审核通过。");
+            }
             if (readCount > 200000) {
                 $("#comment").rules("add", {
                     required: true,
