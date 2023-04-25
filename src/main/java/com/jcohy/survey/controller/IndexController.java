@@ -71,6 +71,8 @@ public class IndexController {
 			dbStudent.setUsername(student.getUsername());
 			dbStudent.setReadCount(student.getReadCount());
 			dbStudent.setComment(student.getComment());
+            dbStudent.setTime(student.getTime());
+            dbStudent.setTimeCount(student.getTimeCount());
 			logger.info("updateStudent: {} ", student);
 			repository.save(dbStudent);
 		}

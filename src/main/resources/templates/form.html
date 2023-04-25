@@ -8,6 +8,7 @@
     <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/sweetalert.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
           rel="stylesheet">
@@ -83,9 +84,26 @@
                             <label class="col-sm-3 control-label">附加说明：</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" id="comment" name="comment"
-                                          placeholder="阅读数字超过 20 万，请在附加说明里提供阅读的具体书名及阅读页码。"></textarea>
+                                          placeholder="阅读数字超过 5 万，请在附加说明里提供所阅读的书名及阅读的起止页码。"></textarea>
                             </div>
                         </div>
+
+                        <div class="form-group hide">
+                            <label class="col-sm-3 control-label">你今天共阅读了多少分钟？</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="time" name="time"
+                                          placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group hide">
+                            <label class="col-sm-3 control-label">你每分钟平均阅读多少字？</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="timeCount" name="timeCount"
+                                          placeholder="">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-3">
                                 <button class="btn btn-primary center-block"
@@ -101,6 +119,7 @@
 </div>
 <script src="js/jquery.min.js?v=2.1.4"></script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_zh.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -125,14 +144,6 @@
             defaultDate: new Date(),
             todayBtn: 'linked'
         })
-
-        // $.validator.addMethod("isComment", function(value,element,readCount){
-        //     if(readCount > 300000 ) {
-        //        return
-        //     } else {
-        //         $('#comment').rules('remove','required')
-        //     }
-        // }, "请添加附加说明，比如，书名，章节，页码");
 
         $("#surveyForm").validate({
             // rules: {
@@ -168,16 +179,42 @@
         })
         $("#readCount").change(function () {
             const readCount = $("#readCount").val();
-            if (readCount >= 300000) {
-                alert("因为你的阅读速度太惊人，超出了我的统计范围，需要联系两位老师帮助你审核通过。");
-            }
-            if (readCount > 200000) {
-                $("#comment").rules("add", {
+            const time = $("#time");
+            const timeCount = $("#timeCount")
+            const comment = $("#comment")
+
+            comment.rules("remove");
+            time.rules("remove");
+            timeCount.rules("remove");
+            time.parent().parent().addClass("hide")
+            timeCount.parent().parent().addClass("hide")
+
+            // 超过 50 千字，在输入时，程序需要提出一个问题：“请输入您所阅读的书名及阅读的起止页码。”
+            if (readCount > 50000) {
+                comment.rules("add", {
                     required: true,
-                    messages: {required: "阅读数字超过 20 万，请在附加说明里提供阅读的具体书名及阅读页码。"}
+                    messages: {required: "阅读数字超过 5 万，请在附加说明里提供所阅读的书名及阅读的起止页码。"}
                 });
-            } else {
-                $("#comment").rules("remove");
+            }
+
+            if( readCount > 150000) {
+                // 超过150千字，在输入时，程序需要提示其完成几个问题：“你今天共阅读了多少分钟？你每分钟平均阅读多少字？请再次确认你今天的阅读字数是？请输入自己所阅读的书名及阅读的起止页码。”
+                time.parent().parent().removeClass("hide")
+                timeCount.parent().parent().removeClass("hide")
+                time.rules("add", {
+                    required: true,
+                });
+                timeCount.rules("add", {
+                    required: true,
+                });
+            }
+
+            if (readCount >= 300000) {
+                swal({
+                    text:"因为你的阅读速度太惊人，超出了我的统计范围，需要联系两位老师帮助你审核通过。",
+                    icon:"warning"
+                })
+                $("#readCount").val("")
             }
         });
     })

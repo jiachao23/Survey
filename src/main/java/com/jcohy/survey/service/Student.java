@@ -41,6 +41,10 @@ public class Student implements Comparable<Student> {
 	@NotNull(message = "姓名不能为空")
 	private String username;
 
+    private String time;
+
+    private String timeCount;
+
 	private String comment;
 
 	public String getComment() {
@@ -97,33 +101,50 @@ public class Student implements Comparable<Student> {
 		return this;
 	}
 
+    public String getTime() {
+        return time;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Student student = (Student) o;
-		return Objects.equals(getId(), student.getId()) && Objects.equals(getClassName(), student.getClassName()) && Objects.equals(getDate(), student.getDate()) && Objects.equals(getReadCount(), student.getReadCount()) && Objects.equals(getUsername(), student.getUsername()) && Objects.equals(getComment(), student.getComment());
-	}
+    public void setTime(String time) {
+        this.time = time;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getId(), getClassName(), getDate(), getReadCount(), getUsername(), getComment());
-	}
+    public String getTimeCount() {
+        return timeCount;
+    }
 
-	@Override
-	public String toString() {
-		return "Student{" +
-				"id=" + id +
-				", className='" + className + '\'' +
-				", date='" + date + '\'' +
-				", readCount=" + readCount +
-				", username='" + username + '\'' +
-				", comment='" + comment + '\'' +
-				'}';
-	}
+    public void setTimeCount(String timeCount) {
+        this.timeCount = timeCount;
+    }
 
-	@Override
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id) && Objects.equals(className, student.className) && Objects.equals(date, student.date) && Objects.equals(readCount, student.readCount) && Objects.equals(username, student.username) && Objects.equals(time, student.time) && Objects.equals(timeCount, student.timeCount) && Objects.equals(comment, student.comment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, className, date, readCount, username, time, timeCount, comment);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", className='" + className + '\'' +
+                ", date='" + date + '\'' +
+                ", readCount=" + readCount +
+                ", username='" + username + '\'' +
+                ", time='" + time + '\'' +
+                ", timeCount='" + timeCount + '\'' +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
+
+    @Override
 	public int compareTo(Student o) {
 		return Long.compare(o.getReadCount(), this.getReadCount());
 	}

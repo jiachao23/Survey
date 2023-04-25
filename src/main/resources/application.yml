@@ -4,7 +4,7 @@ spring:
     mode: HTML
     cache: false
   profiles:
-    active: prod
+    active: dev
 server:
   port: 10993
 

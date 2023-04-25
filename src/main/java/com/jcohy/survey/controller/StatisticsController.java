@@ -59,8 +59,6 @@ public class StatisticsController {
 				.sum();
 		total.setMonthCount(sum);
 		charts.add(total);
-//        charts.stream().forEach(System.out::println);
-//        System.out.println(charts.toString());
 		return charts;
 	}
 
