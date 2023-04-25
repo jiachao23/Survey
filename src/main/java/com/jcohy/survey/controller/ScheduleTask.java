@@ -40,7 +40,7 @@ public class ScheduleTask {
     /**
      * （1）各年级每天阅读量前10名的学生信息可以随时更新、查看，并公开显示（包括班级、姓名和阅读量）；
      */
-    public void eachDayTop10() {
+    public Map<String,List<Student>>  eachDayTop10() {
         List<Student> students = repository.findAllByDate(DateUtils.now());
         Map<String,List<Student>> top10 = new HashMap<>(2);
 
@@ -60,12 +60,14 @@ public class ScheduleTask {
             logger.info(key);
             value.forEach(System.out::println);
         });
+
+        return top10;
     }
 
     /**
      * （2）各年级每月累计阅读量前20名的学生信息可以随时更新、查看，并公开显示（包括班级、姓名和阅读量）；
      */
-    public void eachMonthClassTop20() {
+    public Map<String,List<Student>>  eachMonthClassTop20() {
         List<Student> students = repository.findAll()
                 .stream()
                 .filter(student -> DateUtils.isAfter(student.getDate()))
@@ -111,6 +113,8 @@ public class ScheduleTask {
             logger.info(key);
             value.forEach(System.out::println);
         });
+
+        return top20;
     }
     /**
      * （3）可随时查看各班每天的人均阅读量（公开信息）及年级排名（需授权查看）；

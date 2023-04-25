@@ -5,8 +5,27 @@ spring:
     cache: false
   profiles:
     active: dev
+
+  mail:
+    port: 465
+    username: jia_chao1203@126.com
+    password: LLJHDLFIWNDXQIAQ
+    host: smtp.126.com
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          starttls:
+            enable: true
+            required: true
 server:
   port: 10993
+
 
 
 #  ssl:
