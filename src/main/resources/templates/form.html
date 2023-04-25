@@ -183,11 +183,7 @@
             const timeCount = $("#timeCount")
             const comment = $("#comment")
 
-            comment.rules("remove");
-            time.rules("remove");
-            timeCount.rules("remove");
-            time.parent().parent().addClass("hide")
-            timeCount.parent().parent().addClass("hide")
+            clear()
 
             // 超过 50 千字，在输入时，程序需要提出一个问题：“请输入您所阅读的书名及阅读的起止页码。”
             if (readCount > 50000) {
@@ -215,8 +211,20 @@
                     icon:"warning"
                 })
                 $("#readCount").val("")
+                clear()
             }
         });
+
+        function clear() {
+            const time = $("#time");
+            const timeCount = $("#timeCount")
+            const comment = $("#comment")
+            comment.rules("remove");
+            time.rules("remove");
+            timeCount.rules("remove");
+            time.parent().parent().addClass("hide")
+            timeCount.parent().parent().addClass("hide")
+        }
     })
 
 </script>

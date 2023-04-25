@@ -58,12 +58,20 @@ public class IndexController {
             throw new SurveyException("阅读数字超过 300000，不允许提交！");
         }
 
-		if (student.getReadCount() > 200000) {
-			if (!StringUtils.hasLength(student.getComment())) {
+		if (student.getReadCount() > 50000) {
+			if (!StringUtils.hasText(student.getComment())) {
 				logger.info("添加失败！ {}", student);
-				throw new SurveyException("阅读数字超过 200000，请在下方提供阅读的具体书名及阅读页码。");
+				throw new SurveyException("阅读数字超过 50000，请在下方提供阅读的具体书名及阅读页码。");
 			}
 		}
+
+        if(student.getReadCount() > 150000) {
+            if (!StringUtils.hasText(student.getTime()) || !StringUtils.hasText(student.getTimeCount())) {
+                logger.info("添加失败！ {}", student);
+                throw new SurveyException("阅读时间和平均阅读字数不能为空。");
+            }
+        }
+
 		Student dbStudent = repository.findAllByUsernameAndDateAndClassName(student.getUsername(), student.getDate(),student.getClassName());
 		if (dbStudent != null) {
 			dbStudent.setClassName(student.getClassName());

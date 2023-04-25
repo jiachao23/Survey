@@ -135,7 +135,7 @@
         }
     });
 
-    $("#total").html(data[4].monthCount);
+    $("#total").html(data[4].monthCount.toLocaleString());
 
     const dayStudentChartsOption = {
         title: {
@@ -168,7 +168,10 @@
                 // name: '2011',
                 label: {
                     show: true,
-                    position: 'inside'
+                    position: 'inside',
+                    formatter: function (data) {
+                        return data.data.toLocaleString()
+                    },
                 },
                 type: 'bar',
                 data: data[0].category.data
@@ -209,7 +212,11 @@
                 // name: '2011',
                 label: {
                     show: true,
-                    position: 'inside'
+                    position: 'inside',
+                    formatter: function (data) {
+                        // return data.data/1000 + "  千字"
+                        return data.data.toLocaleString()
+                    },
                 },
                 type: 'bar',
                 data: data[1].category.data
@@ -250,7 +257,11 @@
                 // name: '2011',
                 label: {
                     show: true,
-                    position: 'inside'
+                    position: 'inside',
+                    formatter: function (data) {
+                        // return data.data/1000 + "  千字"
+                        return data.data.toLocaleString()
+                    },
                 },
                 type: 'bar',
                 data: data[2].category.data
@@ -291,7 +302,11 @@
                 // name: '2011',
                 label: {
                     show: true,
-                    position: 'inside'
+                    position: 'inside',
+                    formatter: function (data) {
+                        // return data.data/1000 + "  千字"
+                        return data.data.toLocaleString()
+                    },
                 },
                 type: 'bar',
                 data: data[3].category.data
