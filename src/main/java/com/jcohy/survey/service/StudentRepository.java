@@ -41,18 +41,18 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     /**
      * 获取学生信息
      */
-	Student findAllByUsernameAndDateAndClassName(String username, String date,String className);
+    Student findAllByUsernameAndDateAndClassName(String username, String date,String className);
 
     /**
      * 各班每天的人均阅读量
      */
-    @Query(value = "SELECT className as name,avg(readCount) as readCount,date as date FROM Student where date= ?1 GROUP BY className  order by readCount")
+    @Query(value = "SELECT className as name,avg(readCount) as readCount,date as date FROM Student where date= ?1 GROUP BY className  order by readCount desc")
     List<ClassProjection> findDayClassProjection(String date);
 
     /**
      * 各班每月的人均阅读量
      */
-    @Query(value = "SELECT className as name,avg(readCount) as readCount,date as date FROM Student GROUP BY className order by readCount")
+    @Query(value = "SELECT className as name,avg(readCount) as readCount,date as date FROM Student GROUP BY className order by readCount desc")
     List<ClassProjection> findClassProjection();
 
 }

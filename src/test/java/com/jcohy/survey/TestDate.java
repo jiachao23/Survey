@@ -2,12 +2,11 @@ package com.jcohy.survey;
 
 import java.time.LocalDate;
 
-import com.jcohy.survey.controller.MessageHint;
+import com.jcohy.survey.enums.MessageHint;
+import com.jcohy.survey.utils.DateUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import com.jcohy.survey.utils.DateUtils;
 
 /**
  * 描述: .

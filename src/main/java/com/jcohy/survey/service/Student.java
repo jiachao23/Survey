@@ -24,82 +24,82 @@ import com.jcohy.survey.validation.DateConstraint;
 @Entity
 public class Student implements Comparable<Student> {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull(message = "班级不能为空！")
-	private String className;
+    @NotNull(message = "班级不能为空！")
+    private String className;
 
-	@DateConstraint(message = "日期格式必须为 yyyy-mm-dd")
-	private String date;
+    @DateConstraint(message = "日期格式必须为 yyyy-mm-dd")
+    private String date;
 
-	@NotNull(message = "阅读量不能为空")
-	@Digits(integer = 10, fraction = 0)
-	private Long readCount = 0L;
+    @NotNull(message = "阅读量不能为空")
+    @Digits(integer = 10, fraction = 0)
+    private Long readCount = 0L;
 
-	@NotNull(message = "姓名不能为空")
-	private String username;
+    @NotNull(message = "姓名不能为空")
+    private String username;
 
     private String time;
 
     private String timeCount;
 
-	private String comment;
+    private String comment = "";
 
-	public String getComment() {
-		return comment;
-	}
+    public String getComment() {
+        return comment;
+    }
 
-	public Student setComment(String comment) {
-		this.comment = comment;
-		return this;
-	}
+    public Student setComment(String comment) {
+        this.comment = comment;
+        return this;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public Student setUsername(String username) {
-		this.username = username;
-		return this;
-	}
+    public Student setUsername(String username) {
+        this.username = username;
+        return this;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Student setId(Long id) {
-		this.id = id;
-		return this;
-	}
+    public Student setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
-	public String getClassName() {
-		return className;
-	}
+    public String getClassName() {
+        return className;
+    }
 
-	public Student setClassName(String className) {
-		this.className = className;
-		return this;
-	}
+    public Student setClassName(String className) {
+        this.className = className;
+        return this;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public Student setDate(String date) {
-		this.date = date;
-		return this;
-	}
+    public Student setDate(String date) {
+        this.date = date;
+        return this;
+    }
 
-	public Long getReadCount() {
-		return readCount;
-	}
+    public Long getReadCount() {
+        return readCount;
+    }
 
-	public Student setReadCount(Long readCount) {
-		this.readCount = readCount;
-		return this;
-	}
+    public Student setReadCount(Long readCount) {
+        this.readCount = readCount;
+        return this;
+    }
 
     public String getTime() {
         return time;
@@ -145,7 +145,7 @@ public class Student implements Comparable<Student> {
     }
 
     @Override
-	public int compareTo(Student o) {
-		return Long.compare(o.getReadCount(), this.getReadCount());
-	}
+    public int compareTo(Student o) {
+        return Long.compare(o.getReadCount(), this.getReadCount());
+    }
 }

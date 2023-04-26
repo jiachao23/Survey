@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title> Bootstrap Table</title>
+    <link href="favicon.ico" rel="shortcut icon">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <h4 class="example-title">学生阅读列表</h4>
+                    <table id="bootstrap-table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Panel Basic -->
+
+</div>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/bootstrap-table.min.js"></script>
+<script src="js/bootstrap-table-mobile.min.js"></script>
+<script src="js/bootstrap-table-zh-CN.min.js"></script>
+<script>
+    $("#bootstrap-table").bootstrapTable({
+        url: "/students",
+        method: "post",
+        cache: false,               // 是否使用缓存
+        sortable: true,             // 是否启用排序
+        sortStable: true,           // 设置为 true 将获得稳定的排序
+        sortName: "date",           // 排序列名称
+        sortOrder: "desc",          // 排序方式  asc 或者 desc
+        pagination: true,           // 是否显示分页（*）
+        paginationLoop: false,      // 是否启用分页条无限循环的功能
+        pageSize: 10,               // 每页的记录行数（*）
+        pageNumber: 1,              // 初始化加载第一页，默认第一页
+        pageList: [10, 20, 50],     // 可供选择的每页的行数（*）
+        toolbar: "toolbar",         // 指定工作栏
+        loadingFontSize: 14,        // 自定义加载文本的字体大小
+        striped: true,              // 是否显示行间隔色
+        escape: false,              // 是否首次请求加载数据，对于数据较大可以配置false
+        firstLoad: true,            // 是否首次请求加载数据，对于数据较大可以配置false
+        showFooter: false,          // 是否显示表尾
+        search: false,               // 是否显示搜索框功能
+        // searchText: "",             // 搜索框初始显示的内容，默认为空
+        showSearch: false,           // 是否显示检索信息
+        showPageGo: false,          // 是否显示跳转页
+        showRefresh: false,          // 是否显示刷新按钮
+        showColumns: true,          // 是否显示隐藏某列下拉框
+        showToggle: false,           // 是否显示详细视图和列表视图的切换按钮
+        showExport: false,          // 是否支持导出文件
+        showHeader: true,           // 是否显示表头
+        showFullscreen: false,      // 是否显示全屏按钮
+        clickToSelect: false,       // 是否启用点击选中行
+        singleSelect: false,        // 是否单选checkbox
+        mobileResponsive: true,     // 是否支持移动端适配
+        cardView: false,            // 是否启用显示卡片视图
+        detailView: false,          // 是否启用显示细节视图
+        // onClickRow: "",             // 点击某行触发的事件
+        // onDblClickRow: "",          // 双击某行触发的事件
+        // onClickCell: "",            // 单击某格触发的事件
+        // onDblClickCell: "",         // 双击某格触发的事件
+        // onEditableSave: "",         // 行内编辑保存的事件
+        // onExpandRow: "",            // 点击详细视图的事件
+        // maintainSelected: false,    // 前端翻页时保留所选行
+        // rememberSelected: false,    // 启用翻页记住前面的选择
+        fixedColumns: false,        // 是否启用冻结列（左侧）
+        fixedNumber: 0,             // 列冻结的个数（左侧）
+        fixedRightNumber: 0,        // 列冻结的个数（右侧）
+        // rowStyle: "",               // 通过自定义函数设置行样式
+        queryParams: function (params) { //这里的params是table提供的,传到后台
+            return {
+                offset: params.offset,   //跳过多少条数
+                limit: params.limit      //找多少条数据
+            }
+        },
+        columns: [
+            {
+                field: 'number',
+                title: '序号',
+                width: 20,
+                formatter: function (value, row, index) {
+                    //返回序号，注意 index 是从 0 开始的，所以要加上 1
+                    return index + 1;
+                }
+            },
+            {
+                field: 'className',
+                title: '班级名',
+                width: '10%'
+            },
+            {
+                field: 'username',
+                title: '学生名',
+                width: '10%'
+            },
+            {
+                field: 'readCount',
+                title: '阅读量',
+                sortable: true,
+                width: '10%',
+                formatter: function (data) {
+                    return data.toLocaleString()
+                },
+            },
+            {
+                field: 'date',
+                title: '日期',
+                sortable: true,
+                width: '10%'
+            },
+            {
+                field: 'comment',
+                title: '备注',
+                width: '350'
+            },
+            {
+                field: 'time',
+                title: '阅读时间',
+                width: '10%'
+            },
+            {
+                field: 'timeCount',
+                title: '阅读频率',
+                width: '10%'
+            }
+        ]
+    })
+
+</script>
+</body>
+
+</html>

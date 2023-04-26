@@ -3,6 +3,7 @@ package com.jcohy.survey.utils;
 import java.util.List;
 import java.util.Map;
 
+import com.jcohy.survey.domain.ClassReadCount;
 import com.jcohy.survey.service.Student;
 
 /**
@@ -16,11 +17,21 @@ import com.jcohy.survey.service.Student;
  */
 public class MailDto {
 
-    Integer type;
+    private Integer type;
 
-    String title;
+    private String title;
 
-    Map<String, List<Student>> listMap;
+    private Map<String, List<Student>> listMap;
+
+    private List<ClassReadCount> classProjections;
+
+    public List<ClassReadCount> getClassProjections() {
+        return classProjections;
+    }
+
+    public void setClassProjections(List<ClassReadCount> classProjections) {
+        this.classProjections = classProjections;
+    }
 
     public Integer getType() {
         return type;

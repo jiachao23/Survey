@@ -8,7 +8,6 @@ import javax.mail.internet.MimeMessage;
 
 import com.jcohy.survey.controller.ScheduleTask;
 
-import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -51,7 +50,6 @@ public class MailUtils {
 
     private String buildHtmlContent(List<MailDto> dtos) throws IOException {
         StringBuffer tableBuffer = buildTableContent(dtos);
-//        StringBuffer buffer = getHtmlContent();
         return tableBuffer.toString();
     }
 
@@ -68,29 +66,73 @@ public class MailUtils {
 
 
         dtos.forEach(mailDto -> {
-            sb.append("<h1 style=\"text-align: left;margin-bottom:10px\">标题: "+mailDto.getTitle()+"</h1>");
-            sb.append("<div style=\"text-align: left; \">");
-            mailDto.listMap.forEach((name,value) -> {
-                sb.append("<table border=1 cellPadding=0 cellSpacing=0 width=\"700px\" style=\"text-indent:5px;margin-bottom:20px;border-color:black;\">");
-                sb.append("<thead><tr height='40px'>" +
-                        "			<td with='20%'>年级</td>" +
-                        "			<td with='35%'>姓名</td>" +
-                        "			<td with='40%'>阅读量</td>" +
-                        "		</tr></thead>");
-                value.forEach(student -> {
-                    sb.append("<tr height='40px'>");
-                    sb.append("<td>" + student.getClassName() + "</td>");
-                    sb.append("<td>" + student.getUsername() + "</td>");
-                    sb.append("<td>" + student.getReadCount() + "</td>");
-                    sb.append("</tr>");
-                });
-            });
 
+            sb.append("<h1 style=\"text-align: left;margin-bottom:10px\">标题: " + mailDto.getTitle() + "</h1>");
+            sb.append("<div style=\"text-align: left; \">");
+            if (mailDto.getType() == 1) {
+                createTopTable(sb, mailDto);
+            }
+            if (mailDto.getType() == 2) {
+                createAvgTable(sb, mailDto);
+            }
+            if (mailDto.getType() == 3) {
+                createClassTable(sb, mailDto);
+            }
             sb.append("</table>");
             sb.append("</div>");
         });
         sb.append("</body>\n"
                 + "</html>");
         return sb;
+    }
+
+    private void createClassTable(StringBuffer sb, MailDto mailDto) {
+        sb.append("<table border=1 cellPadding=0 cellSpacing=0 width=\"700px\" style=\"text-indent:5px;margin-bottom:20px;border-color:black;\">");
+        sb.append("<thead><tr height='40px'>" +
+                "			<td with='30%'>年级</td>" +
+                "			<td with='40%'>阅读量</td>" +
+                "		</tr></thead>");
+        mailDto.getClassProjections().forEach((value) -> {
+            sb.append("<tr height='40px'>");
+            sb.append("<td>" + value.getName() + "</td>");
+            sb.append("<td>" + value.getReadCount() + "</td>");
+            sb.append("</tr>");
+        });
+    }
+
+    private void createAvgTable(StringBuffer sb, MailDto mailDto) {
+        sb.append("<table border=1 cellPadding=0 cellSpacing=0 width=\"700px\" style=\"text-indent:5px;margin-bottom:20px;border-color:black;\">");
+        sb.append("<thead><tr height='40px'>" +
+                "			<td with='30%'>年级</td>" +
+                "			<td with='40%'>平均阅读量</td>" +
+                "			<td with='30%'>日期</td>" +
+                "		</tr></thead>");
+        mailDto.getClassProjections().forEach((value) -> {
+            sb.append("<tr height='40px'>");
+            sb.append("<td>" + value.getName() + "</td>");
+            sb.append("<td>" + value.getReadCount() + "</td>");
+            sb.append("<td>" + value.getDate() + "</td>");
+            sb.append("</tr>");
+        });
+    }
+
+    private void createTopTable(StringBuffer sb, MailDto mailDto) {
+        mailDto.getListMap().forEach((name, value) -> {
+            sb.append("<table border=1 cellPadding=0 cellSpacing=0 width=\"700px\" style=\"text-indent:5px;margin-bottom:20px;border-color:black;\">");
+            sb.append("<thead><tr height='40px'>" +
+                    "			<td with='30%'>年级</td>" +
+                    "			<td with='15%'>姓名</td>" +
+                    "			<td with='15%'>阅读量</td>" +
+                    "			<td with='40%'>备注</td>" +
+                    "		</tr></thead>");
+            value.forEach(student -> {
+                sb.append("<tr height='40px'>");
+                sb.append("<td>" + student.getClassName() + "</td>");
+                sb.append("<td>" + student.getUsername() + "</td>");
+                sb.append("<td>" + student.getReadCount() + "</td>");
+                sb.append("<td>" + student.getComment() + "</td>");
+                sb.append("</tr>");
+            });
+        });
     }
 }

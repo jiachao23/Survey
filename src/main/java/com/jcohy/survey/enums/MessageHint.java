@@ -1,4 +1,4 @@
-package com.jcohy.survey.controller;
+package com.jcohy.survey.enums;
 
 /**
  * 描述: .
