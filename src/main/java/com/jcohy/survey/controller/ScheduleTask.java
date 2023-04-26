@@ -14,9 +14,12 @@ import com.jcohy.survey.domain.UserProjection;
 import com.jcohy.survey.service.Student;
 import com.jcohy.survey.service.StudentRepository;
 import com.jcohy.survey.utils.DateUtils;
+import com.jcohy.survey.utils.MailDto;
+import com.jcohy.survey.utils.MailUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -30,24 +33,63 @@ import org.springframework.stereotype.Component;
  * @since 1.0.0
  */
 @Component
+@EnableScheduling
 public class ScheduleTask {
 
     private static final Logger logger = LoggerFactory.getLogger(ScheduleTask.class);
 
     private final StudentRepository repository;
 
-    public ScheduleTask(StudentRepository repository) {
+    private final MailUtils mailUtils;
+
+    public ScheduleTask(StudentRepository repository, MailUtils mailUtils) {
         this.repository = repository;
+        this.mailUtils = mailUtils;
     }
 
 
     @Scheduled(cron = "0 0 2 * * ?")
+//    @Scheduled(initialDelay = 3000,fixedDelay = 5000000)
     public void execute() {
-        //        Map<String, List<Student>> stringListMap = task.eachDayTop10();
-//        MailDto mailDto = new MailDto();
-//        mailDto.setTitle("各年级每天阅读量 Top10");
-//        mailDto.setListMap(stringListMap);
-//        utils.send(List.of(mailDto));
+        logger.info("开始执行定时任务，发送邮件");
+        Map<String, List<Student>> top10 = this.eachDayTop10();
+        MailDto top10Mail = new MailDto();
+        top10Mail.setTitle("各年级昨日阅读量 Top10");
+        top10Mail.setType(1);
+        top10Mail.setListMap(top10);
+
+        Map<String, List<Student>> top20 = this.eachMonthClassTop20();
+        MailDto top20Mail = new MailDto();
+        top20Mail.setTitle("各年级月累计阅读量 Top20");
+        top20Mail.setType(1);
+        top20Mail.setListMap(top20);
+
+        List<ClassReadCount> eachDayClassAvgProjections = this.eachDayClassAvg();
+        MailDto eachDayClassAvg = new MailDto();
+        eachDayClassAvg.setType(2);
+        eachDayClassAvg.setTitle("各班人均阅读量");
+        eachDayClassAvg.setClassProjections(eachDayClassAvgProjections);
+
+        List<ClassReadCount> eachMonthClassAvgProjections1 = this.eachMonthClassAvg();
+        MailDto eachMonthClassAvg = new MailDto();
+        eachMonthClassAvg.setType(2);
+        eachMonthClassAvg.setTitle("各班月累计人均阅读量");
+        eachMonthClassAvg.setClassProjections(eachMonthClassAvgProjections1);
+
+
+        List<ClassReadCount> classYesterdaySum = this.classYesterdaySum();
+        MailDto classYesterdaySumDto = new MailDto();
+        classYesterdaySumDto.setType(3);
+        classYesterdaySumDto.setTitle("班级昨日总阅读量排行榜");
+        classYesterdaySumDto.setClassProjections(classYesterdaySum);
+
+        List<ClassReadCount> classAllSum = this.classAllSum();
+        MailDto classAllSumDto = new MailDto();
+        classAllSumDto.setType(3);
+        classAllSumDto.setTitle("班级累计总阅读量排行榜");
+        classAllSumDto.setClassProjections(classAllSum);
+        mailUtils.send(List.of(top10Mail, top20Mail, eachDayClassAvg, eachMonthClassAvg, classYesterdaySumDto, classAllSumDto));
+        logger.info("邮件发送成功");
     }
 
 
@@ -69,11 +111,6 @@ public class ScheduleTask {
                 .sorted()
                 .limit(10)
                 .collect(Collectors.toList()));
-
-        top10.forEach((key,value) -> {
-            logger.info(key);
-            value.forEach(System.out::println);
-        });
 
         return top10;
     }
@@ -126,11 +163,6 @@ public class ScheduleTask {
                 });
         top20.put("四年级", top204.stream().sorted().limit(20).collect(Collectors.toList()));
 
-        top20.forEach((key, value) -> {
-            logger.info(key);
-            value.forEach(System.out::println);
-        });
-
         return top20;
     }
 
@@ -145,18 +177,18 @@ public class ScheduleTask {
                 .collect(Collectors.groupingBy(classProjection -> classProjection.getName().startsWith("三")))
                 .forEach((key, value) -> {
                     if (key) {
-                        logger.info("三年级排行");
+                        logger.debug("三年级排行");
                     }
                     else {
-                        logger.info("四年级排行");
+                        logger.debug("四年级排行");
                     }
-                    value.stream().forEach(classProjection -> {
+                    value.forEach(classProjection -> {
                         ClassReadCount countAvg = new ClassReadCount();
                         countAvg.setName(classProjection.getName());
                         countAvg.setReadCount(classProjection.getReadCount());
                         countAvg.setDate(classProjection.getDate());
                         classReadCount.add(countAvg);
-                        logger.info(classProjection.getName() + ":" + classProjection.getReadCount());
+                        logger.debug(classProjection.getName() + ":" + classProjection.getReadCount());
                     });
                 });
 
@@ -174,18 +206,18 @@ public class ScheduleTask {
                 .collect(Collectors.groupingBy(classProjection -> classProjection.getName().startsWith("三")))
                 .forEach((key, value) -> {
                     if (key) {
-                        logger.info("三年级排行");
+                        logger.debug("三年级排行");
                     }
                     else {
-                        logger.info("四年级排行");
+                        logger.debug("四年级排行");
                     }
-                    value.stream().forEach(classProjection -> {
+                    value.forEach(classProjection -> {
                         ClassReadCount countAvg = new ClassReadCount();
                         countAvg.setName(classProjection.getName());
                         countAvg.setReadCount(classProjection.getReadCount());
                         countAvg.setDate(classProjection.getDate());
                         classReadCount.add(countAvg);
-                        logger.info(classProjection.getName() + ":" + classProjection.getReadCount());
+                        logger.debug(classProjection.getName() + ":" + classProjection.getReadCount());
                     });
                 });
         return classReadCount;
@@ -195,16 +227,16 @@ public class ScheduleTask {
      * （5）班主任可随时查看本班每个孩子每天和每月累计的阅读量、排名、名次变化；
      */
     public void eachClassStudentCount(String className) {
-        logger.info(className + "今日统计排行");
+        logger.debug(className + "今日统计排行");
         List<UserProjection> dayStudent = repository.findAllByClassNameAndDate(className, LocalDate.now().minusDays(1).toString());
         dayStudent.forEach(student -> {
-            logger.info(student.getUsername() + ":\t" + student.getReadCount());
+            logger.debug(student.getUsername() + ":\t" + student.getReadCount());
         });
 
-        logger.info(className + "累计统计排行");
+        logger.debug(className + "累计统计排行");
         List<UserProjection> monthStudent = repository.findAllByClassName(className);
         monthStudent.forEach(student -> {
-            logger.info(student.getUsername() + ":\t" + student.getReadCount());
+            logger.debug(student.getUsername() + ":\t" + student.getReadCount());
         });
     }
 
@@ -213,13 +245,13 @@ public class ScheduleTask {
      */
     public void eachStudentCount(String username) {
         Student student = repository.findAllByUsernameAndDate(username, DateUtils.now());
-        logger.info("{} 今日阅读量: {}", username, student.getReadCount());
+        logger.debug("{} 今日阅读量: {}", username, student.getReadCount());
 
         long sum = repository.findAllByUsername(username)
                 .stream()
                 .mapToLong(Student::getReadCount)
                 .sum();
-        logger.info("{} 累计阅读量: {}", username, sum);
+        logger.debug("{} 累计阅读量: {}", username, sum);
     }
 
 

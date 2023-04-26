@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.mail.internet.MimeMessage;
 
-import com.jcohy.survey.controller.ScheduleTask;
-
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -26,10 +24,8 @@ public class MailUtils {
 
     private final JavaMailSender mailSender;
 
-    private final ScheduleTask task;
-    public MailUtils(JavaMailSender mailSender, ScheduleTask task) {
+    public MailUtils(JavaMailSender mailSender) {
         this.mailSender = mailSender;
-        this.task = task;
     }
 
     public void send(List<MailDto> dtos) {
