@@ -4,7 +4,7 @@ spring:
     mode: HTML
     cache: false
   profiles:
-    active: dev
+    active: prod
 
   mail:
     port: 465
@@ -57,4 +57,4 @@ spring:
   config:
     activate:
       on-profile: prod
-host: http://114.116.39.31:10993/index
+host: http://124.222.90.247:10993/index

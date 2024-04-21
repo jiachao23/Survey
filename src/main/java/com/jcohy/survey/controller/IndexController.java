@@ -43,6 +43,11 @@ public class IndexController {
         return "form";
     }
 
+    @GetMapping("/update")
+    public String update() {
+        return "update";
+    }
+
     @GetMapping("/report")
     public String report() {
         return "report";
@@ -90,6 +95,33 @@ public class IndexController {
         attr.addAttribute("message",message);
         return "success";
     }
+
+    @PostMapping("/update")
+    public String update(@Validated Student student, Model attr) {
+        String append = " >> 注：老师修改。";
+        student.setComment(student.getComment() + append);
+
+        Student dbStudent = repository.findAllByUsernameAndDateAndClassName(student.getUsername(), student.getDate(),student.getClassName());
+        if (dbStudent != null) {
+            dbStudent.setClassName(student.getClassName());
+            dbStudent.setDate(student.getDate());
+            dbStudent.setUsername(student.getUsername());
+            dbStudent.setReadCount(student.getReadCount());
+            dbStudent.setComment(student.getComment());
+            dbStudent.setTime(student.getTime());
+            dbStudent.setTimeCount(student.getTimeCount());
+            logger.info("updateStudent: {} ", student);
+            repository.save(dbStudent);
+        }
+        else {
+            logger.info("insertStudent: {} ", student);
+            repository.save(student);
+        }
+        String message = MessageHint.getMessage(student.getReadCount().intValue());
+        attr.addAttribute("message",message);
+        return "success";
+    }
+
 
     @GetMapping("/success")
     public String success() {

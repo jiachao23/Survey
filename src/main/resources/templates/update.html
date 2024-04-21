@@ -30,7 +30,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <form action="/submit" class="form-horizontal m-t" id="surveyForm"
+                    <form action="/update" class="form-horizontal m-t" id="surveyForm"
                           method="post">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">班级：</label>
@@ -146,36 +146,7 @@
         })
 
         $("#surveyForm").validate({
-            // rules: {
-            //     comment: {
-            //         isComment: $('#readCount').val()
-            //         required:true
-            // remote: {
-            //     url: "/validate",
-            //     type: "get",
-            //     data: {
-            //         readCount: function() {
-            //             return $('#readCount').val();
-            //         },
-            //         comment: function () {
-            //             return $('#comment').val();
-            //         }
-            //     },
-            //     dataFilter: function(data, dataType) {
-            //         var resp = JSON.parse(data);
-            //         if (resp.result === "true") {
-            //             // 如果验证通过，返回true
-            //             return true;
-            //         } else {
-            //             // 如果验证失败，返回自定义的错误消息
-            //             return '请添加附加说明，比如，书名，章节，页码';
-            //         }
-            //     }
-            // }
-            //     }
-            // },
-            // messages: {
-            // }
+
         })
         $("#readCount").change(function () {
             const readCount = $("#readCount").val();
@@ -205,14 +176,14 @@
                 });
             }
 
-            if (readCount >= 300000) {
-                swal({
-                    text:"因为你的阅读速度太惊人，超出了我的统计范围，需要联系两位老师帮助你审核通过。",
-                    icon:"warning"
-                })
-                $("#readCount").val("")
-                clear()
-            }
+            // if (readCount >= 300000) {
+            //     swal({
+            //         text:"因为你的阅读速度太惊人，超出了我的统计范围，需要联系两位老师帮助你审核通过。",
+            //         icon:"warning"
+            //     })
+            //     $("#readCount").val("")
+            //     clear()
+            // }
         });
 
         function clear() {
